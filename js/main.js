@@ -24,7 +24,7 @@ var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
 }).addTo(map);
 
 //provide data
-var dataURL = "https://raw.githubusercontent.com/RuochangH/Huang-Ruochang_Midterm/master/map.geojson";
+var dataURL = "https://raw.githubusercontent.com/RuochangH/OST4GIS-Midterm/master/map.geojson";
 var featureGroup;
 
 //create layer click sidebar modification
@@ -44,7 +44,7 @@ var ftJson = function (a,b,c) {
   _.filter(c,function(d){return d.Id===a&&d.Week===b;});
 };
 
-
+/*
 var eachFeatureFunction = function(layer,newData) {
   layer.on('click', function (event) {
     showResults();
