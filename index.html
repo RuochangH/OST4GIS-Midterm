@@ -13,9 +13,11 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
+      <h1>Divvy Bike-share Station Hourly Departure Projection</h1>
+    <div class="slide1">
       <div id="intro">
-        <h1>Divvy Bike-share Station Hourly Departure Projection</h1>
-        <p class="intro">In  2013, the city of Chicago lauched Divvy bike share system.
+        <h2>Introduction</h2>
+        <p class="intro">In  2013, the city of Chicago lauched <a href="https://www.divvybikes.com">Divvy bike share system</a>.
           As a new mode that facilitates short distance travels and transit rides,
           the system is popular across the town. However, the unbalanced bike flows hamper
           the operation and expansion of the system. On the one hand, it results in full
@@ -28,6 +30,7 @@
       <hr></hr>
       </div>
       <div id = "explore">
+        <h2>Observed Hourly Departure Difference Across Locations and Times</h2>
         <p>To know more about the problem, simply start by looking at the observed differences in
           hourly departure of these stations. Select weekday and hour to continue.</p>
         <p>Select a day</p>
@@ -63,69 +66,65 @@
           <option>21</option>
           <option>23</option>
         </select>
-        <button> Plot! </button>
+        <button id="s1"> Plot! </button>
       </div>
+    </div>
 
-      <div id="results" style="display: none;">
-      <hr></hr>
-        <h1>Hourly Departure of Selected Station During Selected Day</h1>
-        <style>
-        .bar{
-          fill: steelblue;
-        }
-        .bar:hover{
-          fill: brown;
-        }
-        .axis {
-          font: 10px sans-serif;
-        }
-        .axis path,
-        .axis line {
-          fill: none;
-          stroke: #000;
-          shape-rendering: crispEdges;
-        }
-      </style>
-      <script>
-      // set the dimensions of the canvas
-      var margin = {top: 20, right: 20, bottom: 70, left: 40},
-          width = 600 - margin.left - margin.right,
-          height = 300 - margin.top - margin.bottom;
+    <div class="slide2" style="display: none;">
+        <h2>Predictors: Station Area Predictor Exploration</h2>
+        <p>To build the predictive model for hourly departures, we included four type of varibles,
+          namesly spatially-and-temporally lagged hourly depatures, socio-economic and bike network
+          characteristics of station areas, distance to and average ridership of nearest transit stations
+          for each bike station, and time of depatures. The last three types are all theoritically related
+          to bike trip demand, and the first type, including historical depatures at the same station and
+          neighboring station departures, are assumed to be similar to the dependent variable because
+          demands are usually concentrated in certain time period and location. </p>
+        <p>For purpose of illustration, this page mainly illustrate major station area properties, including
+          employment and population density, median household income, bike lane length, and number of Transit Stations
+          within station area. Station area is defined by 0.5-mile buffer around stations. The origional data comes from
+          ACS census, and Chicago Open Data, and they are summarized and exported in ArcGIS through Spatial Join.</p>
+        <hr></hr>
+        <p>Start by selecting interesting predictors</p>
+        <select>
+          <option>Employment Density</option>
+          <option>Population Density</option>
+          <option>Median Household Income</option>
+          <option>Bike Lane Length</option>
+          <option>Transit Stations Nearby</option>
+        </select>
+        <button id = "s2">Plot!</button>
+    </div>
+
+    <div class="slide3" style="display: none;">
+        <h2>Predictors: Serial and Spatial Lag Variables</h2>
+        <p>Our previous research suggests that there are promonent correlation among the hourly depatures of a station,
+        the hourly departures a week ago in the same hour, and the hourly departures a week ago in the same hour at neares neighbor station</p>
+        <img src="/images/add.jpg" alt="Serial and Spatial Correlation" style="width:128px;height:128px;">
+        <hr></hr>
+        <p>Start by selecting interesting predictors</p>
+        <select>
+          <option>Employment Density</option>
+          <option>Population Density</option>
+          <option>Median Household Income</option>
+          <option>Bike Lane Length</option>
+          <option>Transit Stations Nearby</option>
+        </select>
+        <button id = "s2">Plot!</button>
+    </div>
+    </div>
 
 
-// set the ranges
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-
-var y = d3.scale.linear().range([height, 0]);
-
-// define the axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-
-// add the SVG element
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-      </div>
+    <!--Slides-->
+    <div>
+      <a class="prev" >&#10094;</a>
+      <a class="next" >&#10095;</a>
     </div>
 
     <!-- Map -->
     <div id="map" class="map"></div>
 
     <!-- Legend -->
-    <div class="legend">
+    <div class="legend" style="display:none;">
       <ul class="legend">
         <li><span class = "MON"></span> Monday </li>
         <li><span class = "TUE"></span> Tuesday </li>
