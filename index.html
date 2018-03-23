@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <script src = "http://d3js.org/d3.v3.min.js"></script>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div id="intro">
+        <h1>Divvy Bike-share Station Hourly Departure Projection</h1>
+        <p class="intro">In  2013, the city of Chicago lauched Divvy bike share system.
+          As a new mode that facilitates short distance travels and transit rides,
+          the system is popular across the town. However, the unbalanced bike flows hamper
+          the operation and expansion of the system. On the one hand, it results in full
+          or empty station frequently, downgrading the reliability of the system.
+          On the other hand, bike reallocation, solution to this problem, is based on
+          real-time activity, which is costy and lagging behind.</p>
+        <p class="intro">While the unbalanced bike flow is inherented, pro-active reallocation has the potential
+          to reduce the cost and reduce loss of customers. Therefore, this project is designed to
+          build a OLS model to project the hourly departure for 147 stations near downtown Loop.</p>
+      <hr></hr>
+      </div>
+      <div id = "explore">
+        <p>To know more about the problem, simply start by looking at the observed differences in
+          hourly departure of these stations. Select weekday and hour to continue.</p>
+        <p>Select a day</p>
+        <select id="aweek">
+          <option>Weekday</option>
+          <option>Weekend</option>
+        </select>
+        <p>Select an hour</p>
+        <select id="ahour">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+          <option>20</option>
+          <option>21</option>
+          <option>22</option>
+          <option>21</option>
+          <option>23</option>
+        </select>
+        <button> Plot! </button>
+      </div>
+
+      <div id="results" style="display: none;">
+      <hr></hr>
+        <h1>Hourly Departure of Selected Station During Selected Day</h1>
+        <style>
+        .bar{
+          fill: steelblue;
+        }
+        .bar:hover{
+          fill: brown;
+        }
+        .axis {
+          font: 10px sans-serif;
+        }
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+      </style>
+      <script>
+      // set the dimensions of the canvas
+      var margin = {top: 20, right: 20, bottom: 70, left: 40},
+          width = 600 - margin.left - margin.right,
+          height = 300 - margin.top - margin.bottom;
+
+
+// set the ranges
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+var y = d3.scale.linear().range([height, 0]);
+
+// define the axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+
+// add the SVG element
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div id="map" class="map"></div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <ul class="legend">
+        <li><span class = "MON"></span> Monday </li>
+        <li><span class = "TUE"></span> Tuesday </li>
+        <li><span class = "WED"></span> Wedsday </li>
+        <li><span class = "THU"></span> Thursday </li>
+        <li><span class = "FRI"></span> Friday </li>
+      </ul>
+    </div>
+    <!-- Javascript Imports -->
+    <script src="js/jquery-2.2.0.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
