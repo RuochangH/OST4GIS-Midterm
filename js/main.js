@@ -7,13 +7,20 @@ var map = L.map('map', {
   zoom: 13
 });
 
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  subdomains: 'abcd',
-  minZoom: 0,
-  maxZoom: 20,
-  ext: 'png'
+var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+  opacity:0.7,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
 }).addTo(map);
+
+
+//var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+//  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+//  subdomains: 'abcd',
+//  minZoom: 0,
+//  maxZoom: 20,
+//  ext: 'png'
+//}).addTo(map);
 
 
 //provide data
@@ -80,7 +87,7 @@ $(document).ready(function(){
         pointToLayer:function(feature,latlng){
           var geojsonMarkerOptions = {
               radius: feature.properties.dept+1,
-              fillColor: "#F8B195",
+              fillColor: "#F67280",
               color: "#355C7D",
               weight: 1,
               opacity: 0.5,
@@ -101,6 +108,10 @@ $(document).ready(function(){
           $('.prev').hide();
           $('.next').show();
           $('.slide1').show();
+          $('.slide2').hide();
+          $('.slide3').hide();
+          $('.slide4').hide();
+          $('.slide5').hide();
           map.removeLayer(featureGroup);
           break;
           case 1:
@@ -108,6 +119,9 @@ $(document).ready(function(){
           $('.next').show();
           $('.slide1').hide();
           $('.slide2').show();
+          $('.slide3').hide();
+          $('.slide4').hide();
+          $('.slide5').hide();
           map.removeLayer(featureGroup);
           break;
           case 2:
@@ -116,19 +130,27 @@ $(document).ready(function(){
           $('.slide1').hide();
           $('.slide2').hide();
           $('.slide3').show();
+          $('.slide4').hide();
+          $('.slide5').hide();
           map.removeLayer(featureGroup);
           break;
           case 3:
           $('.prev').show();
           $('.next').show();
           $('.slide1').hide();
-          $('.slide2').show();
+          $('.slide2').hide();
+          $('.slide3').hide();
+          $('.slide4').show();
+          $('.slide5').hide();
           break;
           case 4:
           $('.prev').show();
           $('.next').hide();
           $('.slide1').hide();
-          $('.slide2').show();
+          $('.slide2').hide();
+          $('.slide3').hide();
+          $('.slide4').hide();
+          $('.slide5').show();
           break;
         }
       };
