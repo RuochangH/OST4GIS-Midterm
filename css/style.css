@@ -107,6 +107,15 @@ button {
   border-radius: 5px;
 }
 
+.info3{
+  padding: 6px 8px;
+  font:14px/16px AppleGothic, Helvatica;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
 h4 {
   margin: 0 0 5px;
   color: #355C7D;
@@ -122,4 +131,54 @@ h4 {
     float: left;
     margin-right: 8px;
     opacity: 0.7;
+}
+
+.infoLegend3 {
+    line-height: 18px;
+    color: #555;
+}
+.infoLegend3 i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.infoLegend5 {
+    line-height: 18px;
+    color: #555;
+}
+.infoLegend5 i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+
+.chart rect{
+  fill: #F8B195;
+}
+
+.chart text{
+  fill:#355C7D;
+  font:12px AppleGothic;
+  text-anchor:end;
+}
+
+.axis text {
+  font: 10px AppleGothic;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke:#000;
+  shape-rendering:crispEdges;
+}
+
+.axis text{
+  fill: "#355C7D";
 }

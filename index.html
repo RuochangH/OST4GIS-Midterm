@@ -89,9 +89,11 @@
           characteristics of station areas, distance to and average ridership of nearest transit stations for each
           bike station, and time of depatures. They are all theoritically related to bike trip demand. </p>
         <p>This page takes a deeper look at station area variables, including employment and population density, median
-          household income, bike lane length, and number of Transit Stations within station area. Station area is
+          household income, and number of Transit Stations within station area. Station area is
           defined by 0.5-mile buffer around stations. The origional data comes from ACS census, and Chicago Open Data,
           and they are summarized and exported in ArcGIS through Spatial Join.</p>
+        <p>The sizes of the each point show the number of the departures total and the color of the each point illustrate
+          the value of station area predictors.
         <hr></hr>
         <p>Start by selecting interesting station area predictors</p>
         <select id ="apredictor">
@@ -106,17 +108,106 @@
 
     <div class="slide4" style="display: none;">
         <h2>Prediction Results</h2>
-        <p>To predict for the future We use linear regression model to predict hourly departure. Start </p>
+        <p>After throwing all lag variables and station area variables, we use stepwise regression, Anova test,and cross
+          validation to compare and get the final selection of variables. The final model has an adjusted R-square of 0.702,
+          which means 70% of the variations in our dependent variable are explained by our model. It is significant under
+          0.05 confidence level. The VIF test of all included variables are less than 5, suggesting that there is no
+          significant multicollinarity in our independent variables too.</p>
+        <p>In terms of generalizability, we use 100-fold cross validation that subsets the data to 100 folders and uses 99
+          of them as training sets to test the other for 100 times. The mean R-squares of these 100 folds is 0.680,
+          with 0.117 stardared deviation. The mean absolute error is 1.553, with 0.149 standard deviation. Both of these
+          suggesting that the predictive power of our model is consistently high across different observations.
         <hr></hr>
-        <p>The</p>
-
+        <p>As a justification, select a day and time to check the predicted value. Click any station you are interested in
+          to zoom in and see details in popup windows.</p>
+        <div>
+          <p>Select a day</p>
+          <select id="bweek">
+            <option>Weekday</option>
+            <option>Weekend</option>
+          </select>
+          <p>Select an hour</p>
+          <select id="bhour">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>21</option>
+            <option>23</option>
+          </select>
+          <button id="s3"> Plot! </button>
+        </div>
     </div>
 
     <div class="slide5" style="display: none;">
         <h2>Model Residuels</h2>
-        <p>hold </p>
+        <p>For a deeper comparison of the predicted value and observed value, this map illustrates the relationship between
+          error and observed hourly departure. The size of the point shows the number of departures, while the color of the point
+          illustrates its error. The darker the color, the farther the distance from the observed value. If it's overestimated,
+          the color is warmer and vice verse. As you may observed from these maps, our model is comparably poor-performing when
+          hourly departure values are high. </p>
+        <p>Also, you can choose same hour but different weekdays, or same day different hours (peak or off peak) to check the
+          serial correlation of our model. In other words, whether the prediction power is consistent across time. You may
+          check the spatial correlations too, simply by observing the spatial color pattern of several plots. If same colors are
+          clustered, then spatial correlation exists and vice verse.
         <hr></hr>
-        <p>The</p>
+        <p>Choose any time and hour to start. Click any interesting points to see a graphic comparison of predicted and observed
+          value in that specific station.</p>
+        <div>
+          <p>Select a day</p>
+          <select id="cweek">
+            <option>Weekday</option>
+            <option>Weekend</option>
+          </select>
+          <p>Select an hour</p>
+          <select id="chour">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>21</option>
+            <option>23</option>
+          </select>
+          <button id="s4"> Plot! </button>
+        </div>
 
     </div>
 
