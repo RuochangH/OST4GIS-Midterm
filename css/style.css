@@ -86,11 +86,6 @@ select {
   background-color: rgba(0,0,0,0.8);
 }
 
-
-#s1{
-  float:right;
-}
-
 button {
     display:block;
     background-color: #F8B195;
@@ -98,26 +93,33 @@ button {
     color: #355C7D;
     text-decoration: none;
     font-size: 16px;
-    margin: 10px 0px;
+    margin: 24px 0px;
     cursor: pointer;
     font-family: DINPro;
 }
 
-.legend { list-style: none;
-  display: block;
-  font-family: AppleGothic;
-  padding-left: 10px;
-  position: absolute;
-  z-index: 2000;
-  left:200px;
-  bottom:10px;
-  width:800px;
+.info1{
+  padding: 6px 8px;
+  font:14px/16px AppleGothic, Helvatica;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
 }
 
-.legend li {float:left;}
-.legend span {border:1px solid #ccc; float:left; width:20px; height: 12px; margin:5px;}
-.legend .MON {background-color: #F8B195;}
-.legend .TUE {background-color: #F67280;}
-.legend .WED {background-color: #C06C84;}
-.legend .THU {background-color: #6C5B7B;}
-.legend .FRI {background-color: #355C7D;}
+h4 {
+  margin: 0 0 5px;
+  color: #355C7D;
+}
+
+.infoLegend1 {
+    line-height: 18px;
+    color: #555;
+}
+.infoLegend1 i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
